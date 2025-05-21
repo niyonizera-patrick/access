@@ -4,27 +4,50 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
+import Categories from './pages/Categories';
+import StockRecords from './pages/StockRecords';
+import Report from './pages/Report';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
     <Router>
       <Routes>
-        {/* Redirect root to /login */}
         <Route path="/" element={<Navigate to="/login" />} />
-        {/* Public routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        {/* Protected route: only shows Dashboard if token exists */}
-        <Route 
-          path="/dashboard" 
+        <Route
+          path="/dashboard"
           element={
             <ProtectedRoute>
               <Dashboard />
             </ProtectedRoute>
-          } 
+          }
         />
-        {/* Fallback redirect */}
+        <Route
+          path="/categories"
+          element={
+            <ProtectedRoute>
+              <Categories />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/stockrecords"
+          element={
+            <ProtectedRoute>
+              <StockRecords />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/report"
+          element={
+            <ProtectedRoute>
+              <Report />
+            </ProtectedRoute>
+          }
+        />
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </Router>
